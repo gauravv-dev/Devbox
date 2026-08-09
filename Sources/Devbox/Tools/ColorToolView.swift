@@ -170,20 +170,37 @@ private struct CSSColor {
     }
 
     private static func parseHex(_ hex: String) -> CSSColor? {
-        guard [3, 4, 6, 8].contains(hex.count) else { return nil }
-        var digits: [Int] = []
-        digits.reserveCapacity(hex.count)
-        for ch in hex {
-            guard let v = Int(String(ch), radix: 16) else { return nil }
-            digits.append(v)
+        let h = Array(hex)
+        switch h.count {
+        case 3:
+            guard let r = h[0].hexDigitValue, let g = h[1].hexDigitValue, let b = h[2].hexDigitValue else { return nil }
+            return CSSColor(r: Double(r << 4 | r) / 255,
+                            g: Double(g << 4 | g) / 255,
+                            b: Double(b << 4 | b) / 255,
+                            a: 1)
+        case 4:
+            guard let r = h[0].hexDigitValue, let g = h[1].hexDigitValue,
+                  let b = h[2].hexDigitValue, let a = h[3].hexDigitValue else { return nil }
+            return CSSColor(r: Double(r << 4 | r) / 255,
+                            g: Double(g << 4 | g) / 255,
+                            b: Double(b << 4 | b) / 255,
+                            a: Double(a << 4 | a) / 255)
+        case 6:
+            guard let r = bytePair(h, 0), let g = bytePair(h, 2), let b = bytePair(h, 4) else { return nil }
+            return CSSColor(r: Double(r) / 255, g: Double(g) / 255, b: Double(b) / 255, a: 1)
+        case 8:
+            guard let r = bytePair(h, 0), let g = bytePair(h, 2), let b = bytePair(h, 4), let a = bytePair(h, 6) else { return nil }
+            return CSSColor(r: Double(r) / 255, g: Double(g) / 255, b: Double(b) / 255, a: Double(a) / 255)
+        default:
+            return nil
         }
-        if digits.count <= 4 {
-            digits = digits.flatMap { [$0, $0] }
-        }
-        return CSSColor(r: Double(digits[0] << 4 | digits[1]) / 255,
-                        g: Double(digits[2] << 4 | digits[3]) / 255,
-                        b: Double(digits[4] << 4 | digits[5]) / 255,
-                        a: Double(digits[6] << 4 | digits[7]) / 255)
+    }
+
+    private static func bytePair(_ h: [Character], _ i: Int) -> Int? {
+        guard i + 1 < h.count,
+              let hi = h[i].hexDigitValue,
+              let lo = h[i + 1].hexDigitValue else { return nil }
+        return hi << 4 | lo
     }
 
     private static func parseFunction(_ s: String, isHSL: Bool) -> CSSColor? {
