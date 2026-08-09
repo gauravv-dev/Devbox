@@ -17,6 +17,7 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
 cp "$BIN" "$APP/Contents/MacOS/Devbox"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
+cp Resources/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns" 2>/dev/null || echo "    (no AppIcon.icns — icon will be default)"
 
 # Ad-hoc sign so Gatekeeper doesn't block local launches
 if command -v codesign >/dev/null 2>&1; then

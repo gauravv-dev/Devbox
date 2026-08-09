@@ -8,6 +8,8 @@
 	<string>Devbox</string>
 	<key>CFBundleExecutable</key>
 	<string>Devbox</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>local.devbox.Devbox</string>
 	<key>CFBundleVersion</key>
