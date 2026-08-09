@@ -1,42 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
   <defs>
-    <radialGradient id="bgRad" cx="38%" cy="30%" r="95%">
-      <stop offset="0%" stop-color="#5B3FD6"/>
-      <stop offset="42%" stop-color="#3A1E96"/>
-      <stop offset="78%" stop-color="#241359"/>
-      <stop offset="100%" stop-color="#150A33"/>
+    <!-- pastel mint -> sky blue background -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D9FBEC"/>
+      <stop offset="48%" stop-color="#BFEEF7"/>
+      <stop offset="100%" stop-color="#A6CDF6"/>
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="42%" cy="34%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.85"/>
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0.0"/>
     </radialGradient>
-    <linearGradient id="bgDiag" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.55"/>
-      <stop offset="55%" stop-color="#4C1D95" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#BE185D" stop-opacity="0.5"/>
+    <!-- deep metal: teal -> blue -> indigo (pops on pastel) -->
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="50%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
     </linearGradient>
-    <!-- backdrop flower stroke (dimmer) -->
-    <linearGradient id="emblemStroke" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#67E8F9"/>
-      <stop offset="45%" stop-color="#A78BFA"/>
-      <stop offset="100%" stop-color="#F0ABFC"/>
+    <!-- accent grip: warm amber for contrast/art -->
+    <linearGradient id="grip" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#F97316"/>
     </linearGradient>
-    <!-- HERO glyph: bright white->cyan->violet for max contrast on dark center -->
-    <linearGradient id="glyphStroke" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="35%" stop-color="#A5F3FC"/>
-      <stop offset="70%" stop-color="#7DD3FC"/>
-      <stop offset="100%" stop-color="#C4B5FD"/>
-    </linearGradient>
-    <radialGradient id="facetFill" cx="50%" cy="42%" r="70%">
-      <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.5"/>
-      <stop offset="60%" stop-color="#6D28D9" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#1E1B4B" stop-opacity="0.05"/>
-    </radialGradient>
-    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="7" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="glyphGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="13" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="toolShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="9" stdDeviation="11" flood-color="#1E3A8A" flood-opacity="0.30"/>
     </filter>
     <clipPath id="tile"><path d="M0,229
     C0,126.47670000000001 126.47670000000001,0 229,0
@@ -47,48 +34,50 @@
     L229,1024
     C126.47670000000001,1024 0,897.5233 0,795
     Z"/></clipPath>
-    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.28"/>
-      <stop offset="34%" stop-color="#FFFFFF" stop-opacity="0.04"/>
-      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
-    </linearGradient>
-    <radialGradient id="vig" cx="50%" cy="46%" r="72%">
-      <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.5"/>
+    <radialGradient id="vig" cx="50%" cy="50%" r="75%">
+      <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#1E3A8A" stop-opacity="0.14"/>
     </radialGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35"/>
+      <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.04"/>
+      <stop offset="65%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
   </defs>
 
   <g clip-path="url(#tile)">
-    <rect width="1024" height="1024" fill="url(#bgRad)"/>
-    <rect width="1024" height="1024" fill="url(#bgDiag)"/>
+    <rect width="1024" height="1024" fill="url(#bg)"/>
+    <rect width="1024" height="1024" fill="url(#bgGlow)"/>
 
-    <g opacity="0.85"><polygon fill="url(#facetFill)" points="512,512 512.0,265.0 725.9,388.5"/><polygon fill="url(#facetFill)" points="512,512 725.9,388.5 725.9,635.5"/><polygon fill="url(#facetFill)" points="512,512 725.9,635.5 512.0,759.0"/><polygon fill="url(#facetFill)" points="512,512 512.0,759.0 298.1,635.5"/><polygon fill="url(#facetFill)" points="512,512 298.1,635.5 298.1,388.5"/><polygon fill="url(#facetFill)" points="512,512 298.1,388.5 512.0,265.0"/></g>
-    <g fill="none" stroke="#C4B5FD" stroke-opacity="0.12" stroke-width="1.5"><circle cx="512" cy="512" r="244"/><circle cx="512" cy="512" r="266"/></g>
+    <!-- faint geometric backdrop: flower of life + hexagon -->
+    <g fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.30"><circle cx="512.00" cy="512.00" r="118"/><circle cx="512.00" cy="394.00" r="118"/><circle cx="614.19" cy="453.00" r="118"/><circle cx="614.19" cy="571.00" r="118"/><circle cx="512.00" cy="630.00" r="118"/><circle cx="409.81" cy="571.00" r="118"/><circle cx="409.81" cy="453.00" r="118"/><circle cx="614.19" cy="335.00" r="118"/><circle cx="716.38" cy="512.00" r="118"/><circle cx="614.19" cy="689.00" r="118"/><circle cx="409.81" cy="689.00" r="118"/><circle cx="307.62" cy="512.00" r="118"/><circle cx="409.81" cy="335.00" r="118"/><circle cx="512.00" cy="276.00" r="118"/><circle cx="716.38" cy="394.00" r="118"/><circle cx="716.38" cy="630.00" r="118"/><circle cx="512.00" cy="748.00" r="118"/><circle cx="307.62" cy="630.00" r="118"/><circle cx="307.62" cy="394.00" r="118"/></g>
+    <g fill="none" stroke="#0D9488" stroke-width="2.5" stroke-opacity="0.16"><circle cx="512" cy="512" r="244"/><circle cx="512" cy="512" r="266"/></g>
+    <path d="M512.00,262.00L728.51,387.00L728.51,637.00L512.00,762.00L295.49,637.00L295.49,387.00Z" fill="none" stroke="#1D4ED8" stroke-width="4" stroke-opacity="0.18"/>
 
-    <path d="M512.00,262.00L728.51,387.00L728.51,637.00L512.00,762.00L295.49,637.00L295.49,387.00Z" fill="none" stroke="url(#emblemStroke)" stroke-width="5" stroke-opacity="0.85" filter="url(#softGlow)"/>
-    <path d="M512.00,268.00L723.31,390.00L723.31,634.00L512.00,756.00L300.69,634.00L300.69,390.00Z" fill="none" stroke="#E0E7FF" stroke-opacity="0.16" stroke-width="1"/>
-
-    <!-- Flower of Life as supportive backdrop (dimmed, thinner) -->
-    <g fill="none" stroke="url(#emblemStroke)" stroke-width="2" stroke-opacity="0.40"><circle cx="512.00" cy="512.00" r="118"/><circle cx="512.00" cy="394.00" r="118"/><circle cx="614.19" cy="453.00" r="118"/><circle cx="614.19" cy="571.00" r="118"/><circle cx="512.00" cy="630.00" r="118"/><circle cx="409.81" cy="571.00" r="118"/><circle cx="409.81" cy="453.00" r="118"/><circle cx="614.19" cy="335.00" r="118"/><circle cx="716.38" cy="512.00" r="118"/><circle cx="614.19" cy="689.00" r="118"/><circle cx="409.81" cy="689.00" r="118"/><circle cx="307.62" cy="512.00" r="118"/><circle cx="409.81" cy="335.00" r="118"/><circle cx="512.00" cy="276.00" r="118"/><circle cx="716.38" cy="394.00" r="118"/><circle cx="716.38" cy="630.00" r="118"/><circle cx="512.00" cy="748.00" r="118"/><circle cx="307.62" cy="630.00" r="118"/><circle cx="307.62" cy="394.00" r="118"/></g>
-
-    <!-- HERO code glyph </> -->
     
-    <g fill="none" stroke="url(#glyphStroke)" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" filter="url(#glyphGlow)">
-      <polyline points="468,418 392,512 468,606"/>
-      <line x1="488" y1="606" x2="536" y2="418"/>
-      <polyline points="556,418 632,512 556,606"/>
+  <g transform="translate(512 512) scale(2.25)" filter="url(#toolShadow)">
+    <g transform="rotate(-45)">
+      <g fill="url(#metal)">
+  <g>
+    <rect x="-122" y="-17" width="206" height="34" rx="17"/>
+    <polygon points="123.5,28.0 119.6,33.0 115.1,37.5 110.0,41.4 104.5,44.6 98.7,47.1 92.6,48.9 86.3,49.8 79.9,50.0 73.6,49.3 67.4,47.8 61.4,45.6 55.8,42.6 50.6,38.9 45.9,34.6 41.8,29.7 38.4,24.4 35.6,18.6 33.6,12.6 32.4,6.4 32.0,0.0 32.4,-6.4 33.6,-12.6 35.6,-18.6 38.4,-24.4 41.8,-29.7 45.9,-34.6 50.6,-38.9 55.8,-42.6 61.4,-45.6 67.4,-47.8 73.6,-49.3 79.9,-50.0 86.3,-49.8 92.6,-48.9 98.7,-47.1 104.5,-44.6 110.0,-41.4 115.1,-37.5 119.6,-33.0 123.5,-28.0 101.9,-13.4 100.0,-15.8 97.9,-18.0 95.5,-19.9 92.8,-21.4 90.0,-22.6 87.1,-23.5 84.1,-23.9 81.0,-24.0 78.0,-23.7 75.0,-23.0 72.1,-21.9 69.4,-20.4 66.9,-18.7 64.7,-16.6 62.7,-14.3 61.0,-11.7 59.7,-9.0 58.8,-6.0 58.2,-3.0 58.0,0.0 58.2,3.0 58.8,6.0 59.7,9.0 61.0,11.7 62.7,14.3 64.7,16.6 66.9,18.7 69.4,20.4 72.1,21.9 75.0,23.0 78.0,23.7 81.0,24.0 84.1,23.9 87.1,23.5 90.0,22.6 92.8,21.4 95.5,19.9 97.9,18.0 100.0,15.8 101.9,13.4"/>
+  </g></g>
     </g>
-    <!-- crisp pass without blur for sharp edges -->
-    <g fill="none" stroke="url(#glyphStroke)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="468,418 392,512 468,606"/>
-      <line x1="488" y1="606" x2="536" y2="418"/>
-      <polyline points="556,418 632,512 556,606"/>
+    <g transform="rotate(45)">
+      <g fill="url(#metal)">
+        <rect x="-96" y="-9" width="20" height="18" rx="2"/>
+        <rect x="-76" y="-7" width="104" height="14" rx="7"/>
+        <rect x="24" y="-11" width="12" height="22" rx="3"/>
+      </g>
+      <g fill="url(#grip)">
+        <rect x="34" y="-25" width="100" height="50" rx="25"/>
+      </g>
     </g>
+  </g>
 
     <rect width="1024" height="1024" fill="url(#vig)"/>
     <rect width="1024" height="512" fill="url(#gloss)"/>
   </g>
-
   <path d="M0,229
     C0,126.47670000000001 126.47670000000001,0 229,0
     L795,0
@@ -97,5 +86,5 @@
     C1024,897.5233 897.5233,1024 795,1024
     L229,1024
     C126.47670000000001,1024 0,897.5233 0,795
-    Z" fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="2"/>
+    Z" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="3"/>
 </svg>
