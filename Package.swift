@@ -5,7 +5,7 @@ let package = Package(
     name: "Devbox",
     platforms: [.macOS(.v14)],
     dependencies: [
-        .package(url: "https://github.com/jpsim/Yams.git", from: "5.1.3"),
+        .package(url: "https://github.com/jpsim/Yams.git", from: "6.2.2"),
     ],
     targets: [
         .executableTarget(
