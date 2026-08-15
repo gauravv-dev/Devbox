@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/{owner}/Devbox/actions/workflows/ci.yml/badge.svg" alt="CI">
-  <img src="https://img.shields.io/github/v/release/{owner}/Devbox" alt="Release">
+  <img src="https://github.com/gauravv-dev/Devbox/actions/workflows/ci.yml/badge.svg" alt="CI">
+  <img src="https://img.shields.io/github/v/release/gauravv-dev/Devbox" alt="Release">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License">
 </p>
 
