@@ -32,7 +32,7 @@ jobs:
         run: ditto -c -k --sequesterRsrc --keepParent build/Devbox.app "build/Devbox-${GITHUB_REF_NAME}-macos.zip"
 
       - name: Publish GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: "build/Devbox-${{ github.ref_name }}-macos.zip"
           generate_release_notes: true
