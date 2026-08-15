@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build and publish (macOS)
+    runs-on: macos-15
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: swift --version
+
+      - name: Stamp version from tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" Resources/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $VERSION" Resources/Info.plist
+
+      - name: Build app bundle
+        run: ./build_app.sh
+
+      - name: Zip for distribution
+        run: ditto -c -k --sequesterRsrc --keepParent build/Devbox.app "build/Devbox-${GITHUB_REF_NAME}-macos.zip"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "build/Devbox-${{ github.ref_name }}-macos.zip"
+          generate_release_notes: true
+          body: |
+            ## Install
+            1. Download the zip, unzip, drag **Devbox.app** to /Applications.
+            2. The build is ad-hoc signed (not notarized), so macOS Gatekeeper will ask
+               for confirmation the first time: **right-click → Open**, or run
+               `xattr -dr com.apple.quarantine /Applications/Devbox.app`.

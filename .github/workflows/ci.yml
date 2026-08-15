@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    name: Build (macOS)
+    runs-on: macos-15
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: swift --version
+
+      - name: Build app bundle
+        run: ./build_app.sh
+
+      - name: Zip bundle
+        run: ditto -c -k --sequesterRsrc --keepParent build/Devbox.app build/Devbox-ci.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Devbox-ci
+          path: build/Devbox-ci.zip
+          retention-days: 7
